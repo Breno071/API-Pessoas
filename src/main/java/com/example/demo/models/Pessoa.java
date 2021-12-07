@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.persistence.*;
 import javax.print.attribute.standard.DateTimeAtCreation;
 
-import pessoadto.PessoaDTO;
+import com.example.demo.pessoadto.PessoaDTO;
 
 
 @Entity

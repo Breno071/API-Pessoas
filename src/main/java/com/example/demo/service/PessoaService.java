@@ -9,11 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.example.demo.repository.*;
-
-import exception.PessoaNaoEncontradaException;
-import pessoadto.PessoaDTO;
-
+import com.example.demo.exception.PessoaNaoEncontradaException;
 import com.example.demo.models.Pessoa;
+import com.example.demo.pessoadto.PessoaDTO;
 
 @Service
 public class PessoaService {

@@ -14,11 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.exception.PessoaNaoEncontradaException;
 import com.example.demo.models.Pessoa;
+import com.example.demo.pessoadto.PessoaDTO;
 import com.example.demo.service.PessoaService;
-
-import exception.PessoaNaoEncontradaException;
-import pessoadto.PessoaDTO;
 
 @RequestMapping(path = "api/v1/pessoas")
 @RestController

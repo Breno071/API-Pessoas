@@ -1,4 +1,4 @@
-package pessoadto;
+package com.example.demo.pessoadto;
 
 public class PessoaDTO {
 	private String nomeDto;
