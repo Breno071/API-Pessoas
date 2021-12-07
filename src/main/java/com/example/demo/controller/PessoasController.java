@@ -30,7 +30,7 @@ public class PessoasController {
 	}
 	
 	@GetMapping("{id}")
-	public Optional<Pessoa> getPessoa(@PathVariable long id) {
+	public ResponseEntity<Pessoa> getPessoa(@PathVariable long id) {
 		return this.pessoaService.getPessoa(id);
 	}
 	

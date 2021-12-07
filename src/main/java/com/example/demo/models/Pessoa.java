@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class Pessoa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column
 	private Long id;
 	private String nome;
 	private int idade;
@@ -39,4 +40,11 @@ public class Pessoa {
 		this.data_nascinmento = data_nasccimento;
 	}
 	
+	public Long getId() {
+		return this.id;
+	}
+	
+	public void setId(long id) {
+		this.id = id;
+	}
 }
