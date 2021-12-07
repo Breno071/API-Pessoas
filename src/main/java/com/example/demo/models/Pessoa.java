@@ -3,6 +3,9 @@ package com.example.demo.models;
 import java.util.Date;
 
 import javax.persistence.*;
+import javax.print.attribute.standard.DateTimeAtCreation;
+
+import pessoadto.PessoaDTO;
 
 
 @Entity
@@ -14,7 +17,7 @@ public class Pessoa {
 	private Long id;
 	private String nome;
 	private int idade;
-	private Date data_nascinmento;
+	private Date entity_data_criacao;
 	
 	public String getNome() {
 		return this.nome;
@@ -33,11 +36,11 @@ public class Pessoa {
 	}
 	
 	public Date getData_Nascimento() {
-		return this.data_nascinmento;
+		return this.entity_data_criacao;
 	}
 	
 	public void setData_Nascimento(Date data_nasccimento) {
-		this.data_nascinmento = data_nasccimento;
+		this.entity_data_criacao = data_nasccimento;
 	}
 	
 	public Long getId() {
@@ -46,5 +49,15 @@ public class Pessoa {
 	
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	public Pessoa(PessoaDTO pessoaDto) {
+		this.nome = pessoaDto.getNomeDto();
+		this.idade = pessoaDto.getIdadeDto();
+		this.entity_data_criacao = new Date(System.currentTimeMillis());
+	}
+	
+	public Pessoa() {
+		
 	}
 }

@@ -18,6 +18,7 @@ import com.example.demo.models.Pessoa;
 import com.example.demo.service.PessoaService;
 
 import exception.PessoaNaoEncontradaException;
+import pessoadto.PessoaDTO;
 
 @RequestMapping(path = "api/v1/pessoas")
 @RestController
@@ -37,7 +38,7 @@ public class PessoasController {
 	}
 	
 	@PostMapping("/post")
-	public Pessoa postPessoa(@Validated @RequestBody Pessoa pessoa) {
+	public Pessoa postPessoa(@Validated @RequestBody PessoaDTO pessoa) {
 		return this.pessoaService.postPessoa(pessoa);
 	}
 	
@@ -47,7 +48,7 @@ public class PessoasController {
 	}
 	
 	@PutMapping("{id}")
-	public ResponseEntity<Pessoa> putPessoa(@PathVariable(value = "id") long id, @Validated @RequestBody Pessoa pessoa) throws PessoaNaoEncontradaException{
+	public ResponseEntity<Pessoa> putPessoa(@PathVariable(value = "id") long id, @Validated @RequestBody PessoaDTO pessoa) throws PessoaNaoEncontradaException{
 		return this.pessoaService.putPessoa(id, pessoa);
 	}
 
