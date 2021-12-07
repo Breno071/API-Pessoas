@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.example.demo.repository.*;
 
+import exception.PessoaNaoEncontradaException;
+
 import com.example.demo.models.Pessoa;
 
 @Service
@@ -24,9 +26,9 @@ public class PessoaService {
 	}
 	
 	//GET by ID <port>/api/v1/pessoas/{id}
-	public ResponseEntity<Pessoa> getPessoa(long id) {
+	public ResponseEntity<Pessoa> getPessoa(long id) throws PessoaNaoEncontradaException {
 		var pessoa = this.pessoaRepository.findById(id);
-		if(!pessoa.isPresent()) return ResponseEntity.notFound().build();
+		if(!pessoa.isPresent()) throw new PessoaNaoEncontradaException(id);
 		return ResponseEntity.of(pessoa);
 		
 	}
@@ -37,18 +39,18 @@ public class PessoaService {
 	}
 
 	//DELETE <port>/api/v1/pessoas{id}
-	public ResponseEntity<Pessoa> deletePessoa(long id) {
+	public ResponseEntity<Pessoa> deletePessoa(long id) throws PessoaNaoEncontradaException {
 		var pessoa = this.pessoaRepository.findById(id);
-		if(!pessoa.isPresent()) return ResponseEntity.notFound().build();
+		if(!pessoa.isPresent()) throw new PessoaNaoEncontradaException(id);
 		
 		this.pessoaRepository.delete(pessoa.get());
 		return ResponseEntity.ok().build();
 	}
 
 	//PUT <port>/api/v1/pessoas{id}
-	public ResponseEntity<Pessoa> putPessoa(long id, Pessoa pessoa) {
+	public ResponseEntity<Pessoa> putPessoa(long id, Pessoa pessoa) throws PessoaNaoEncontradaException {
 		var pessoaAuxiliar = this.pessoaRepository.findById(id);
-		if(!pessoaAuxiliar.isPresent()) return ResponseEntity.notFound().build();
+		if(!pessoaAuxiliar.isPresent()) throw new PessoaNaoEncontradaException(id);
 		
 		pessoaAuxiliar.get().setId(id);
 		pessoaAuxiliar.get().setNome(pessoa.getNome());

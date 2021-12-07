@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.models.Pessoa;
 import com.example.demo.service.PessoaService;
 
+import exception.PessoaNaoEncontradaException;
+
 @RequestMapping(path = "api/v1/pessoas")
 @RestController
 public class PessoasController {
@@ -30,22 +32,22 @@ public class PessoasController {
 	}
 	
 	@GetMapping("{id}")
-	public ResponseEntity<Pessoa> getPessoa(@PathVariable long id) {
+	public ResponseEntity<Pessoa> getPessoa(@PathVariable long id)throws PessoaNaoEncontradaException {
 		return this.pessoaService.getPessoa(id);
 	}
 	
 	@PostMapping("/post")
-	public Pessoa postPessoa(@Validated @RequestBody Pessoa pessoa){
+	public Pessoa postPessoa(@Validated @RequestBody Pessoa pessoa) {
 		return this.pessoaService.postPessoa(pessoa);
 	}
 	
 	@DeleteMapping("{id}")
-	public ResponseEntity<Pessoa> deletePessoa(@PathVariable long id){
+	public ResponseEntity<Pessoa> deletePessoa(@PathVariable long id) throws PessoaNaoEncontradaException{
 		return this.pessoaService.deletePessoa(id);
 	}
 	
 	@PutMapping("{id}")
-	public ResponseEntity<Pessoa> putPessoa(@PathVariable(value = "id") long id, @Validated @RequestBody Pessoa pessoa){
+	public ResponseEntity<Pessoa> putPessoa(@PathVariable(value = "id") long id, @Validated @RequestBody Pessoa pessoa) throws PessoaNaoEncontradaException{
 		return this.pessoaService.putPessoa(id, pessoa);
 	}
 
